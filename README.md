@@ -2,6 +2,7 @@
 
 ## Authors: 
 Author 1: Steven Pham
+
 Author 2: Tommy Agarwal
 
 ## Project Description (5 sentences): 
