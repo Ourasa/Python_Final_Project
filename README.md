@@ -1,5 +1,5 @@
-#Project Title - Weather Trends
+# Project Title - Weather Trends
 
-##Authors: 
+## Authors: 
 Author 1: Steven Pham
 Author 2: Tommy Agarwal
