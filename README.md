@@ -16,3 +16,6 @@ The interface will be a web interface that is created using Flask. It is planned
 
 ## Data Collection and Storage Plan: 
 Data can be obtained by scraping from a renowned weather channel website(s). Preferably, the data collection would be done with the use of a provided API. It is highly likely that the information obtained from the site would need to be filtered before organization. The data obtained would then be stored into the local machine in a predetermined format, allowing it to be used for data analysis and visualization. The data we will be going for is the current weather, the forecast, and weather from the past, up to one month. Data even further back would be discarded.
+
+## Data Analysis and Visualization Plan: 
+This part is reliant on the organized data obtained from scraping. The data obtained will be processed internally in the local machine to create an output that can be viewed on the interface. This applies to both the weather forecast and history. The weather forecast will likely be placed in a plot. The weather history may also be placed in a plot, but outliers would also be calculated (using standard deviation presumably). Days that are identified as outliers are planned to be colored differently to be easier to identify.
