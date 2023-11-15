@@ -10,7 +10,7 @@ def set_API_KEY():
     try:
         path = os.path.join('data', 'secret.txt')
         file = open(path)
-        API_KEY = file.read()
+        API_KEY = file.read().strip()
         file.close()
     except: 
         print('Something went wrong opening/reading the secret file')
@@ -24,13 +24,14 @@ def get_current_weather():
 
     cur_temp = data_json['currently']['temperature']                # Current Temperature
     apparent_temp = data_json['currently']['apparentTemperature']   # Current Feeling Temperature
-    precip = data_json['currently']['precipProbability']       # Current Chance of Precipitation
+    precip = data_json['currently']['precipProbability']            # Current Chance of Precipitation
+    wind_speeds = data_json['currently']['windSpeed']                # Current wind speeds
     humidity = data_json['currently']['humidity']                   # Current Humidity
-    dt = datetime.datetime.fromtimestamp(data_json['currently']['time'])    # Date
-    alerts = data_json['alerts']
+    dt = datetime.datetime.fromtimestamp(data_json['currently']['time'])    # Date + time
+    #alerts = data_json['alerts']
 
-    Writer.update_current_weather_file(cur_temp, apparent_temp, precip, humidity, dt, alerts)
-    return (cur_temp, apparent_temp, precip, humidity, dt, alerts)
+    Writer.update_current_weather_file(cur_temp, apparent_temp, precip, wind_speeds, humidity, dt)
+    return (cur_temp, apparent_temp, precip, wind_speeds, humidity, dt)
 
 
 
@@ -42,11 +43,12 @@ def get_yesterday_weather():
     temp_high = data_json['daily']['data'][0]['temperatureHigh']            # Highest temperature
     temp_low = data_json['daily']['data'][0]['temperatureLow']              # Lowest temperature
     precip = data_json['daily']['data'][0]['precipProbability']             # Chance of precipitation
+    wind_speeds = data_json['daily']['data'][0]['windSpeed']                # Wind speeds
     humidity = data_json['daily']['data'][0]['humidity']                    # Humidity
     temp_dt = datetime.datetime.fromtimestamp(data_json['daily']['data'][0]['time']) # Date 
     dt = str(temp_dt.year) + '-'+str(temp_dt.month)+'-'+str(temp_dt.day)
     
-    Writer.update_yesterday_weather_file(temp_high, temp_low, precip, humidity, dt)
+    Writer.update_yesterday_weather_file(temp_high, temp_low, precip, wind_speeds, humidity, dt)
 
     return (temp_high, temp_low, precip, humidity, dt)
 
@@ -62,10 +64,11 @@ def get_week_forecast():
         temp_high = data_json['daily']['data'][i]['temperatureHigh']            # Predicted Highest temperature
         temp_low = data_json['daily']['data'][i]['temperatureLow']              # Predicted Lowest temperature
         precip = data_json['daily']['data'][i]['precipProbability']             # Predicted Chance of precipitation
+        wind_speeds = data_json['daily']['data'][i]['windSpeed']                # Wind speeds
         humidity = data_json['daily']['data'][i]['humidity']                    # Predicted Humidity
         temp_dt = datetime.datetime.fromtimestamp(data_json['daily']['data'][i]['time']) # Date for prediction
         dt = str(temp_dt.year) + '-'+str(temp_dt.month)+'-'+str(temp_dt.day)
-        day_data = (temp_high, temp_low, precip, humidity, dt)
+        day_data = (temp_high, temp_low, precip, wind_speeds, humidity, dt)
         output.append(day_data)
         
     Writer.update_forecast_weather_file(output)
@@ -89,35 +92,3 @@ print('Testing get_week_forecast()')
 forecast = get_week_forecast()
 for day in forecast:
     print(day)
-
-
-
-
-
-
-
-# --- Irrelevant or older code ---
-
-    # print("Right now (raw form), it is " + str(dt) + ".")
-    # print("The temperature is " + str(cur_temp) + "C, but it apparently feels like " + str(apparent_temp) + " C.")
-    # print("Today is " + str(dt.month) + "/" + str(dt.day) + "/" + str(dt.year) + ".")
-
-    # print("\nNote that when taking the month, day, and year, they are of the following types:")
-    # print('Month: ' + str(type(dt.month))) # Integer
-    # print('Day: ' + str(type(dt.day))) # Integer
-    # print('Year: ' + str(type(dt.year))) # Integer
-
-
-
-# The below does not work, likely due to a problem on the API end (They do not have data for time machine no matter what)
-# Get the historic records for the past 1 week(s). It is sorted from oldest to most recent. - Author 1
-# def get_weather_history(): 
-#     prev_day_const = -86400
-#     cur_time = int(time.time())
-#     output = []
-
-# 
-# Test get_weather_history()
-# history = get_weather_history()
-# for day in history:
-#     print(day)

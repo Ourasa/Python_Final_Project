@@ -1,16 +1,16 @@
 import os
 
 
-def update_current_weather_file(cur_temp, apparent_temp, precip, humidity, dt, alerts): 
+def update_current_weather_file(cur_temp, apparent_temp, precip, wind_speeds, humidity, dt): 
     if data_file_exists('current_weather.txt'): 
         os.remove(os.path.join('data','current_weather.txt'))
 
     try:
         file = open(os.path.join('data','current_weather.txt'), 'w')
-        file.write('CTemp\tApTemp\tPrecip\tHmdity\tDate\t\tAlerts\n')
+        file.write('CTemp\tApTemp\tPrecip\tWndSpd\tHmdity\tDate\n')
         
         data = (convert_num_to_2d(cur_temp), convert_num_to_2d(apparent_temp), 
-                convert_num_to_2d(precip), convert_num_to_2d(humidity), str(dt), str(alerts))
+                convert_num_to_2d(precip), convert_num_to_2d(wind_speeds), convert_num_to_2d(humidity), str(dt))
         data_string = '\t'.join(data)
         
         file.write(data_string)
@@ -21,16 +21,16 @@ def update_current_weather_file(cur_temp, apparent_temp, precip, humidity, dt, a
     
 
 
-def update_yesterday_weather_file(temp_high, temp_low, precip, humidity, dt): 
+def update_yesterday_weather_file(temp_high, temp_low, precip, wind_speeds, humidity, dt): 
     if data_file_exists('yesterday_weather.txt'): 
         os.remove(os.path.join('data','yesterday_weather.txt'))
 
     try:
         file = open(os.path.join('data','yesterday_weather.txt'), 'w')
-        file.write('HiTmp\tLoTmp\tPrecip\tHmdity\tDate\n')
+        file.write('HiTmp\tLoTmp\tPrecip\tWndSpd\tHmdity\tDate\n')
 
-        data = (convert_num_to_2d(temp_high), convert_num_to_2d(temp_low), 
-                convert_num_to_2d(precip), convert_num_to_2d(humidity), str(dt))
+        data = (convert_num_to_2d(temp_high), convert_num_to_2d(temp_low), convert_num_to_2d(precip),
+                convert_num_to_2d(wind_speeds), convert_num_to_2d(humidity), str(dt))
         data_string = '\t'.join(data)
         
         file.write(data_string)
@@ -44,7 +44,7 @@ def update_forecast_weather_file(output):
         os.remove(os.path.join('data','forecast_weather.txt'))
     try:
         file = open(os.path.join('data','forecast_weather.txt'), 'w')
-        file.write('HiTmp\tLoTmp\tPrecip\tHmdity\tDate\n')
+        file.write('HiTmp\tLoTmp\tPrecip\tWndSpd\tHmdity\tDate\n')
 
         data_string = ''
 
