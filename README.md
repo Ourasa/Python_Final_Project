@@ -13,13 +13,13 @@ This is a Python-centric project that will provide the user with an interactable
 # Project Outline/Plan 
 
 ## Interface Plan: 
-The interface will be a web interface that is created using Flask. It is planned that the user will interact with this interface through the use of widgets such as buttons. We are thinking of having a home page first, which can then branch off to the forecast plot page and the yesterday page. Ideally, these branches would also be able to directly go to the other's page as well without stopping by the home page. 
+The interface will be a web interface that is created using Flask. It is planned that the user will interact with this interface through the use of widgets such as buttons. We are thinking of having a home page first, which can then branch off to the forecast plot page, the yesterday page, etc. Ideally, these branches would also be able to directly go to the other's page as well without stopping by the home page.
 
 ## Data Collection and Storage Plan: 
-Data can be obtained by using an API from Pirate Weather. The information obtained from this API would need to be filtered for our program's purposes. The data obtained would then be stored into the local machine in a predetermined format, allowing it to be used for data analysis and visualization. The data we will be going for is the current weather, the forecast, and weather from yesterday.
+Data can be obtained by using an API from Pirate Weather. The information obtained from this API would need to be filtered for our program's purposes. The data obtained would then be stored into the local machine in a predetermined format, allowing it to be used for data analysis and visualization. The data we will be going for is the current weather, the forecast, weather from yesterday, and temperatures within a 48 hour period (with the present time being the center).
 
 ## Data Analysis and Visualization Plan: 
-This part is reliant on the organized data obtained using an API. The data obtained will be processed internally in the local machine to create an output that can be viewed on the interface. For the current weather and yesterday's weather, minimal processing would be needed. Meanwhile, the weather forecast will likely be placed in a plot, but outliers would also be calculated (using standard deviation presumably). Days that are identified as outliers are planned to be colored differently to be easier to identify.
+This part is reliant on the organized data obtained using an API. The data obtained will be processed internally in the local machine to create an output that can be viewed on the interface. For the current weather and yesterday's weather, minimal processing would be needed. Meanwhile, the weather forecast will likely be placed in a plot, but outliers could also be calculated (using standard deviation presumably). Days that are identified as outliers are planned to be colored differently to be easier to identify. Similar actions can be done for the 48 hour temperature data. 
 
 - - - - -
 
