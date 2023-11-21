@@ -2,7 +2,7 @@ import requests
 import datetime
 import os
 import Writer
-#import time
+import time
 
 # Read API_Key from secret.txt. This method should always be used first to set the global variable with the API_KEY.
 def set_API_KEY():
@@ -13,7 +13,7 @@ def set_API_KEY():
         API_KEY = file.read().strip()
         file.close()
     except: 
-        print('Something went wrong opening/reading the secret file')
+        print('Something went wrong opening/reading the secret.txt to get API key')
 
 
 # Gets information regarding the current weather and alerts - Author 1
@@ -75,20 +75,56 @@ def get_week_forecast():
 
     return output
 
+def get_48hours_temperatures(): 
+
+    output = []
+
+    #Part A: Get Hourly temperature from yesterday
+    response = requests.get("https://api.pirateweather.net/forecast/"+API_KEY+"/37.338207%2C-121.886330%2C-86400?exclude=minutely%2Calerts%2Cdaily%2Ccurrently")
+    data_json = response.json()
+
+
+    for entry in data_json['hourly']['data']:
+        output.append(entry['temperature'])
+
+
+    #Part B: Get Current data
+    response = requests.get("https://api.pirateweather.net/forecast/"+API_KEY+"/37.338207%2C-121.886330?exclude=minutely%2Chourly%2Cdaily")
+    data_json = response.json()
+    cur_temp = data_json['currently']['temperature']                # Current Temperature
+    dt = datetime.datetime.fromtimestamp(data_json['currently']['time'])
+    output.append(cur_temp)
+
+
+    #Part C: Get Hourly forecasted temperatures
+    response = requests.get("https://api.pirateweather.net/forecast/"+API_KEY+"/37.338207%2C-121.886330?exclude=minutely%2Calerts%2Cdaily%2Ccurrently")
+    data_json = response.json()
+
+    for i in range(1,24):
+        output.append(data_json['hourly']['data'][i]['temperature'])
+
+    Writer.update_48hours_temp_file(dt, output)
+
+    return output
+    
 
 # --- Starts Running here ---
 
 set_API_KEY()
 
-print('Testing get_current_weather()')
-print(get_current_weather())
+# print('Testing get_current_weather()')
+# print(get_current_weather())
 
 
-print('Testing get_yesterday_weather()')
-print(get_yesterday_weather())
+# print('Testing get_yesterday_weather()')
+# print(get_yesterday_weather())
 
 
-print('Testing get_week_forecast()')
-forecast = get_week_forecast()
-for day in forecast:
-    print(day)
+# print('Testing get_week_forecast()')
+# forecast = get_week_forecast()
+# for day in forecast:
+#     print(day)
+
+print('Testing get_48hours_temperatures()')
+data_48 = get_48hours_temperatures()
+print(data_48)

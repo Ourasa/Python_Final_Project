@@ -69,6 +69,34 @@ def update_forecast_weather_file(output):
         print('Something went wrong trying to update forecast_weather.txt')
 
 
+def update_48hours_temp_file(dt ,output): 
+    if data_file_exists('48hours_temp.txt'): 
+        os.remove(os.path.join('data','48hours_temp.txt'))
+
+    try:
+        file = open(os.path.join('data','48hours_temp.txt'), 'w')
+        file.write('Time & Date Data obtained: '+ str(dt) + '\n')
+        file.write('Hr\tTmp\n')
+
+        data_string = ''
+
+        for i in range(0, 49): 
+            temp_list = [str(i-24)]
+            temp_list.append(str(output[i]))
+            
+            hour_data = '\t'.join(temp_list) + "\n"
+            data_string = data_string + hour_data
+        
+        print(data_string)
+        file.write(data_string)
+        file.close()
+
+    except Exception: 
+        print('Something went wrong trying to update forecast_weather.txt')
+
+
+
+
 def data_file_exists(file_name):
     path = os.path.join('data', file_name)
     return os.path.isfile(path)
