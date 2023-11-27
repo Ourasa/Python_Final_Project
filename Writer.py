@@ -16,7 +16,7 @@ def update_current_weather_file(cur_temp, apparent_temp, precip, wind_speeds, hu
         file.write(data_string)
         file.close()
 
-        print("Today's data successfully written")
+        print("Today's current data successfully written")
     except Exception: 
         print('Something went wrong trying to update current_weather.txt')
     
