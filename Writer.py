@@ -16,6 +16,7 @@ def update_current_weather_file(cur_temp, apparent_temp, precip, wind_speeds, hu
         file.write(data_string)
         file.close()
 
+        print("Today's data successfully written")
     except Exception: 
         print('Something went wrong trying to update current_weather.txt')
     
@@ -35,6 +36,7 @@ def update_yesterday_weather_file(temp_high, temp_low, precip, wind_speeds, humi
         
         file.write(data_string)
         file.close()
+        print('Yesterday data successfully written')
 
     except Exception: 
         print('Something went wrong trying to update yesterday_weather.txt')
@@ -64,7 +66,7 @@ def update_forecast_weather_file(output):
         
         file.write(data_string)
         file.close()
-
+        print('Week forecast data successfully written')
     except Exception: 
         print('Something went wrong trying to update forecast_weather.txt')
 
@@ -87,10 +89,11 @@ def update_48hours_temp_file(dt ,output):
             hour_data = '\t'.join(temp_list) + "\n"
             data_string = data_string + hour_data
         
-        print(data_string)
+        #print(data_string)
+
         file.write(data_string)
         file.close()
-
+        print('48 hour data successfully written')
     except Exception: 
         print('Something went wrong trying to update forecast_weather.txt')
 

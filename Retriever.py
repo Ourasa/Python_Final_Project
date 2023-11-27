@@ -125,6 +125,6 @@ set_API_KEY()
 # for day in forecast:
 #     print(day)
 
-print('Testing get_48hours_temperatures()')
-data_48 = get_48hours_temperatures()
-print(data_48)
+# print('Testing get_48hours_temperatures()')
+# data_48 = get_48hours_temperatures()
+# print(data_48)
