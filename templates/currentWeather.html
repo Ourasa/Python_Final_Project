@@ -1,17 +1,130 @@
 <!doctype html>
 <html>
 <head>
-<title>Weather Trends - Today</title>
-<meta name="description" content="Contains info about today's weather">
+    <title>Weather Trends - Today</title>
+    <meta name="description" content="Contains info about today's weather">
+    <link rel="stylesheet" type="text/css" href="static/style.css" />
 </head>
 
 <body>
-    <p>Placeholder text.<br>
-        If you reached this page, then the data has been successfully stored.<br> 
-        You should be able to see new files, if not replacement data in existing files. <br>
-        Now it's all a matter of displaying the data. To start, you can make this page <br>
-        display the weather details for the today, and include an update button.
-    </p>
+    <h1>CURRENT FORECAST</h1>
+    <table>
+        <tr>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Current Temperature</th>
+            <th>Apparent Temperature</th>
+            <th>Precipitation</th>
+            <th>Wind Speed</th>
+            <th>Humidity</th>
+        </tr>
+
+        <tr>
+            <td>{{c_date}}</td>
+            <td>{{c_time}}</td>
+            <td>{{c_temp}}</td>
+            <td>{{c_apparent_temp}}</td>
+            <td>{{c_precipitation}}</td>
+            <td>{{c_wind_speed}}</td>
+            <td>{{c_humidity}}</td>
+        </tr>
+        
+    </table>
+
+    <h1>YESTERDAY'S FORECAST</h1>
+    <table>
+        <tr>
+            <th>Date</th>
+            <th>High Temperature</th>
+            <th>Low Temperature</th>
+            <th>Precipitation</th>
+            <th>Wind Speed</th>
+            <th>Humidity</th>
+        </tr>
+
+        <tr>
+            <td>{{y_date}}</td>
+            <td>{{y_hi_temp}}</td>
+            <td>{{y_lo_temp}}</td>
+            <td>{{y_precipitation}}</td>
+            <td>{{y_wind_speed}}</td>
+            <td>{{y_humidity}}</td>
+        </tr>
+        
+    </table>
+
+    <h1>48-HOUR FORECAST</h1>
+
+    <h1>7-DAY FORECAST</h1>
+    <table>
+        <tr>
+            <th>Date</th>
+            <th>High Temperature</th>
+            <th>Low Temperature</th>
+            <th>Precipitation</th>
+            <th>Wind Speed</th>
+            <th>Humidity</th>
+        </tr>
+
+        <tr>
+            <td>{{date1}}</td>
+            <td>{{hi_temp1}}</td>
+            <td>{{lo_temp1}}</td>
+            <td>{{precipitation1}}</td>
+            <td>{{wind_speed1}}</td>
+            <td>{{humidity1}}</td>
+        </tr>
+        <tr>
+            <td>{{date2}}</td>
+            <td>{{hi_temp2}}</td>
+            <td>{{lo_temp2}}</td>
+            <td>{{precipitation2}}</td>
+            <td>{{wind_speed2}}</td>
+            <td>{{humidity2}}</td>
+        </tr>
+        <tr>
+            <td>{{date3}}</td>
+            <td>{{hi_temp3}}</td>
+            <td>{{lo_temp3}}</td>
+            <td>{{precipitation3}}</td>
+            <td>{{wind_speed3}}</td>
+            <td>{{humidity3}}</td>
+        </tr>
+        <tr>
+            <td>{{date4}}</td>
+            <td>{{hi_temp4}}</td>
+            <td>{{lo_temp4}}</td>
+            <td>{{precipitation4}}</td>
+            <td>{{wind_speed4}}</td>
+            <td>{{humidity4}}</td>
+        </tr>
+        <tr>
+            <td>{{date5}}</td>
+            <td>{{hi_temp5}}</td>
+            <td>{{lo_temp5}}</td>
+            <td>{{precipitation5}}</td>
+            <td>{{wind_speed5}}</td>
+            <td>{{humidity5}}</td>
+        </tr>
+        <tr>
+            <td>{{date6}}</td>
+            <td>{{hi_temp6}}</td>
+            <td>{{lo_temp6}}</td>
+            <td>{{precipitation6}}</td>
+            <td>{{wind_speed6}}</td>
+            <td>{{humidity6}}</td>
+        </tr>
+        <tr>
+            <td>{{date7}}</td>
+            <td>{{hi_temp7}}</td>
+            <td>{{lo_temp7}}</td>
+            <td>{{precipitation7}}</td>
+            <td>{{wind_speed7}}</td>
+            <td>{{humidity7}}</td>
+        </tr>
+        
+    </table>
+
 </body>
 
 </html>
