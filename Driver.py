@@ -1,6 +1,8 @@
 from flask import Flask
 from flask import render_template
 from flask import request
+import numpy as np
+import matplotlib.pyplot as plt
 
 import Retriever
 
@@ -10,6 +12,28 @@ app = Flask(__name__)
 @app.route("/home")
 def home_page():
     return render_template('startup.html')
+
+#48 HOUR DATA
+file_name = "data/48hours_temp.txt"
+timeseries = np.genfromtxt(file_name, skip_header = 2)
+h = [] #hours (x-axis)
+t = [] #temperature (y-axis)
+for entry in timeseries:
+    h.append(entry[0] - 24)
+    t.append(entry[1])
+# hours = np.array(h)
+# temps = np.array(t)
+
+fig = plt.figure()
+plt.plot(h, t, linewidth=2)
+plt.grid(linewidth=0.5, alpha=0.8)
+plt.xlim(-48, 0)
+plt.xticks([-48, -42, -36, -30, -24, -18, -12, -6, 0])
+plt.ylabel('Temperature')
+plt.xlabel('Hour')
+plt.title('48 Hour Forecast')
+fig.savefig("static/48hourplot.png")
+plt.close(fig)
 
 @app.route("/currentWeather")
 def home_to_today_page():
@@ -47,8 +71,8 @@ def home_to_today_page():
     y_date = forecast[5]
     f.close()
 
-    #48 HOUR DATA
-
+    
+    
     #7 DAY FORECAST
     file_name = "data/forecast_weather.txt"
     f = open(file_name, 'r')
