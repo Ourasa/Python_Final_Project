@@ -21,9 +21,6 @@ t = [] #temperature (y-axis)
 for entry in timeseries:
     h.append(entry[0] - 24)
     t.append(entry[1])
-# hours = np.array(h)
-# temps = np.array(t)
-
 fig = plt.figure()
 plt.plot(h, t, linewidth=2)
 plt.grid(linewidth=0.5, alpha=0.8)
@@ -34,7 +31,34 @@ plt.xlabel('Hour')
 plt.title('48 Hour Forecast')
 fig.savefig("static/48hourplot.png")
 plt.close(fig)
-
+#7DAY PLOT 
+file_name = "data/forecast_weather.txt"
+timeseries = np.genfromtxt(file_name, skip_header = 1)
+hi_t = [] #high temp (y-axis)
+lo_t = [] #low temp (y-axis)
+for entry in timeseries:
+    hi_t.append(entry[0])
+    lo_t.append(entry[1])
+fig = plt.figure()
+date = []
+f = open(file_name, 'r')
+next(f)
+for line in f:
+    x = line.split()
+    date.append(x[5])
+f.close()
+fig = plt.figure()
+plt.plot([0,1,2,3,4,5,6], hi_t, 'r', linewidth=2, label = 'High Temperatures')
+plt.plot([0,1,2,3,4,5,6], lo_t, 'b', linewidth=2, label = 'Low Temperatures')
+plt.grid(linewidth=0.5, alpha=0.8)
+plt.xticks([0,1,2,3,4,5,6], date)
+plt.gcf().autofmt_xdate()
+plt.ylabel('Temperature')
+plt.xlabel('Date')
+plt.title('7 Day Forecast')
+plt.legend()
+fig.savefig("static/7dayplot.png")
+plt.close(fig)
 @app.route("/currentWeather")
 def home_to_today_page():
     Retriever.get_current_weather()
