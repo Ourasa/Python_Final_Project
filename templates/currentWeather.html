@@ -7,8 +7,8 @@
 </head>
 
 <body>
-    <h1>CURRENT FORECAST</h1>
-    <table>
+    <h1 id="CurrentLabel">CURRENT FORECAST</h1>
+    <table id = "CurrentTable">
         <tr>
             <th>Date</th>
             <th>Time</th>
@@ -31,8 +31,8 @@
         
     </table>
 
-    <h1>YESTERDAY'S FORECAST</h1>
-    <table>
+    <h1 id="YesterdayLabel">YESTERDAY'S FORECAST</h1>
+    <table id="YesterdayTable">
         <tr>
             <th>Date</th>
             <th>High Temperature</th>
@@ -53,10 +53,11 @@
         
     </table>
 
-    <h1>48-HOUR FORECAST</h1>
-    <img src="static/48hourplot.png"><br>
-    <h1>7-DAY FORECAST</h1>
-    <table>
+    <h1 id="48HourLabel">48-HOUR FORECAST</h1>
+    <img src="static/48hourplot.png", id="48HourPlot"><br>
+    <h1 id="7daylabel">7-DAY FORECAST</h1>
+    <img src="static/7dayplot.png", id="7dayplot"><br>
+    <table id="7daytable">
         <tr>
             <th>Date</th>
             <th>High Temperature</th>
