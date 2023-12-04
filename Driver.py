@@ -15,7 +15,7 @@ def home_page():
 
 #48 HOUR DATA
 file_name = "data/48hours_temp.txt"
-timeseries = np.genfromtxt(file_name, skip_header = 2)
+timeseries = np.genfromtxt(file_name, skip_header = 2, delimiter="\t")
 h = [] #hours (x-axis)
 t = [] #temperature (y-axis)
 for entry in timeseries:
@@ -33,7 +33,7 @@ fig.savefig("static/48hourplot.png")
 plt.close(fig)
 #7DAY PLOT 
 file_name = "data/forecast_weather.txt"
-timeseries = np.genfromtxt(file_name, skip_header = 1)
+timeseries = np.genfromtxt(file_name, skip_header = 1, delimiter="\t")
 hi_t = [] #high temp (y-axis)
 lo_t = [] #low temp (y-axis)
 for entry in timeseries:
