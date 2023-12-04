@@ -28,10 +28,13 @@ def get_current_weather():
     wind_speeds = data_json['currently']['windSpeed']                # Current wind speeds
     humidity = data_json['currently']['humidity']                   # Current Humidity
     dt = datetime.datetime.fromtimestamp(data_json['currently']['time'])    # Date + time
+    
+    condition = data_json['currently']['summary']                   # Weather condition
+
     #alerts = data_json['alerts']
 
-    Writer.update_current_weather_file(cur_temp, apparent_temp, precip, wind_speeds, humidity, dt)
-    return (cur_temp, apparent_temp, precip, wind_speeds, humidity, dt)
+    Writer.update_current_weather_file(cur_temp, apparent_temp, precip, wind_speeds, humidity, dt, condition)
+    return (cur_temp, apparent_temp, precip, wind_speeds, humidity, dt, condition)
 
 
 
@@ -68,7 +71,10 @@ def get_week_forecast():
         humidity = data_json['daily']['data'][i]['humidity']                    # Predicted Humidity
         temp_dt = datetime.datetime.fromtimestamp(data_json['daily']['data'][i]['time']) # Date for prediction
         dt = str(temp_dt.year) + '-'+str(temp_dt.month)+'-'+str(temp_dt.day)
-        day_data = (temp_high, temp_low, precip, wind_speeds, humidity, dt)
+
+        condition = data_json['daily']['data'][i]['summary']
+
+        day_data = (temp_high, temp_low, precip, wind_speeds, humidity, dt, condition)
         output.append(day_data)
         
     Writer.update_forecast_weather_file(output)

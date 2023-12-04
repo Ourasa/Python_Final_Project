@@ -1,16 +1,16 @@
 import os
 
 
-def update_current_weather_file(cur_temp, apparent_temp, precip, wind_speeds, humidity, dt): 
+def update_current_weather_file(cur_temp, apparent_temp, precip, wind_speeds, humidity, dt, condition): 
     if data_file_exists('current_weather.txt'): 
         os.remove(os.path.join('data','current_weather.txt'))
 
     try:
         file = open(os.path.join('data','current_weather.txt'), 'w')
-        file.write('CTemp\tApTemp\tPrecip\tWndSpd\tHmdity\tDate\n')
+        file.write('CTemp\tApTemp\tPrecip\tWndSpd\tHmdity\tDate\tCondition\n')
         
         data = (convert_num_to_2d(cur_temp), convert_num_to_2d(apparent_temp), 
-                convert_num_to_2d(precip), convert_num_to_2d(wind_speeds), convert_num_to_2d(humidity), str(dt))
+                convert_num_to_2d(precip), convert_num_to_2d(wind_speeds), convert_num_to_2d(humidity), str(dt), condition)
         data_string = '\t'.join(data)
         
         file.write(data_string)
@@ -46,7 +46,7 @@ def update_forecast_weather_file(output):
         os.remove(os.path.join('data','forecast_weather.txt'))
     try:
         file = open(os.path.join('data','forecast_weather.txt'), 'w')
-        file.write('HiTmp\tLoTmp\tPrecip\tWndSpd\tHmdity\tDate\n')
+        file.write('HiTmp\tLoTmp\tPrecip\tWndSpd\tHmdity\tDate\tCondition\n')
 
         data_string = ''
 
