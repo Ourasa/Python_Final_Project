@@ -1,1 +1,8 @@
-
+HiTmp	LoTmp	Precip	WndSpd	Hmdity	Date	Condition
+00.00	00.00	00.00	00.00	00.00	0000-00-0	Placeholder
+00.00	00.00	00.00	00.00	00.00	0000-00-0	Placeholder
+00.00	00.00	00.00	00.00	00.00	0000-00-0	Placeholder
+00.00	00.00	00.00	00.00	00.00	0000-00-0	Placeholder
+00.00	00.00	00.00	00.00	00.00	0000-00-0	Placeholder
+00.00	00.00	00.00	00.00	00.00	0000-00-0	Placeholder
+00.00	00.00	00.00	00.00	00.00	0000-00-0	Placeholder
