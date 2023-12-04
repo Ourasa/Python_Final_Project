@@ -1,2 +1,0 @@
-HiTmp	LoTmp	Precip	WndSpd	Hmdity	Date
-00.00	00.00	0.00	0.00	0.00	0000-00-00
