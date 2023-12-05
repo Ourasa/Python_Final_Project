@@ -3,6 +3,7 @@ import datetime
 import os
 import Writer
 import time
+import sys
 
 # Read API_Key from secret.txt. This method should always be used first to set the global variable with the API_KEY.
 def set_API_KEY():
@@ -11,6 +12,10 @@ def set_API_KEY():
         path = os.path.join('data', 'secret.txt')
         file = open(path)
         API_KEY = file.read().strip()
+
+        if API_KEY == "":
+            print("WARNING: NO API KEY DETECTED. PLEASE ABORT THE PROGRAM AND FOLLOW THE API KEY INSTRUCTIONS")
+        
         file.close()
     except: 
         print('Something went wrong opening/reading the secret.txt to get API key')
