@@ -79,15 +79,16 @@ def home_to_today_page():
     f = open(file_name, 'r')
     next(f)
     line = f.readline()
-    forecast = line.split()
+    forecast = line.split('\t')
     c_temp = forecast[0]
     c_apparent_temp = forecast[1]
     c_precipitation = forecast[2]
     c_wind_speed = forecast[3]
     c_humidity = forecast[4]
-    c_date = forecast[5]
-    c_time = forecast[6]
-    c_forecast_type = forecast[7]
+    date_time = forecast[5].split()
+    c_date = date_time[0]
+    c_time = date_time[1]
+    c_forecast_type = forecast[6]
     f.close()
 
     #YESTERDAY DATA
@@ -95,7 +96,7 @@ def home_to_today_page():
     f = open(file_name, 'r')
     next(f)
     line = f.readline()
-    forecast = line.split()
+    forecast = line.split('\t')
     y_hi_temp = forecast[0]
     y_lo_temp = forecast[1]
     y_precipitation = forecast[2]
@@ -111,7 +112,7 @@ def home_to_today_page():
     f = open(file_name, 'r')
     next(f)
     line = f.readline()
-    forecast = line.split()
+    forecast = line.split('\t')
     hi_temp1 = forecast[0]
     lo_temp1 = forecast[1]
     precipitation1 = forecast[2]
@@ -121,7 +122,7 @@ def home_to_today_page():
     condition1 = forecast[6]
 
     line = f.readline()
-    forecast = line.split()
+    forecast = line.split('\t')
     hi_temp2 = forecast[0]
     lo_temp2 = forecast[1]
     precipitation2 = forecast[2]
@@ -131,7 +132,7 @@ def home_to_today_page():
     condition2 = forecast[6]
 
     line = f.readline()
-    forecast = line.split()
+    forecast = line.split('\t')
     hi_temp3 = forecast[0]
     lo_temp3 = forecast[1]
     precipitation3 = forecast[2]
@@ -141,7 +142,7 @@ def home_to_today_page():
     condition3 = forecast[6]
 
     line = f.readline()
-    forecast = line.split()
+    forecast = line.split('\t')
     hi_temp4 = forecast[0]
     lo_temp4 = forecast[1]
     precipitation4 = forecast[2]
@@ -151,7 +152,7 @@ def home_to_today_page():
     condition4 = forecast[6]
 
     line = f.readline()
-    forecast = line.split()
+    forecast = line.split('\t')
     hi_temp5 = forecast[0]
     lo_temp5 = forecast[1]
     precipitation5 = forecast[2]
@@ -161,7 +162,7 @@ def home_to_today_page():
     condition5 = forecast[6]
 
     line = f.readline()
-    forecast = line.split()
+    forecast = line.split('\t')
     hi_temp6 = forecast[0]
     lo_temp6 = forecast[1]
     precipitation6 = forecast[2]
@@ -171,7 +172,7 @@ def home_to_today_page():
     condition6 = forecast[6]
 
     line = f.readline()
-    forecast = line.split()
+    forecast = line.split('\t')
     hi_temp7 = forecast[0]
     lo_temp7 = forecast[1]
     precipitation7 = forecast[2]
