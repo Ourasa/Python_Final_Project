@@ -1,0 +1,22 @@
+<!doctype html>
+<html>
+<head>
+    <title>Weather Trends</title>
+    <meta name="description" content="Contains info about today's weather">
+    <link rel="stylesheet" type="text/css" href="static/style.css" />
+</head>
+<body>
+    <h1>48 Hour Forecast</h1>
+    <form action = "/48hourtables" method = "get">
+        <!--Make a submit button with the text Register-->
+        <input type="submit" value="View Table">
+    </form>
+    <form action = "/7daytable" method = "get">
+        <input type="submit" value="View 7 Day Forecast">
+    </form>
+    <form action = "/landing" method = "get">
+        <input type="submit" value="Refresh Data">
+    </form>
+
+    <img src="static/48hourplot.png", id="48HourPlot"><br>
+</body>

@@ -1,0 +1,68 @@
+<!doctype html>
+<html>
+<head>
+    <title>Weather Trends</title>
+    <meta name="description" content="Contains info about today's weather">
+    <link rel="stylesheet" type="text/css" href="static/style.css" />
+</head>
+<body>
+    <h1>48 Hour Forecast</h1>
+    <form action = "/48hourplot" method = "get">
+        <!--Make a submit button with the text Register-->
+        <input type="submit" value="View Graph">
+    </form>
+    <form action = "/7daytable" method = "get">
+        <input type="submit" value="View 7 Day Forecast">
+    </form>
+    <form action = "/landing" method = "get">
+        <input type="submit" value="Refresh Data">
+    </form>
+
+    <h1 id="CurrentLabel">CURRENT FORECAST</h1>
+    <table id = "CurrentTable">
+        <tr>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Current Temperature (F)</th>
+            <th>Apparent Temperature (F)</th>
+            <th>Precipitation</th>
+            <th>Wind Speed</th>
+            <th>Humidity</th>
+            <th>Forecast Condition</th>
+        </tr>
+
+        <tr>
+            <td>{{c_date}}</td>
+            <td>{{c_time}}</td>
+            <td>{{c_temp}}</td>
+            <td>{{c_apparent_temp}}</td>
+            <td>{{c_precipitation}}</td>
+            <td>{{c_wind_speed}}</td>
+            <td>{{c_humidity}}</td>
+            <td>{{c_forecast_type}}</td>
+        </tr>
+        
+    </table>
+
+    <h1 id="YesterdayLabel">YESTERDAY'S FORECAST</h1>
+    <table id="YesterdayTable">
+        <tr>
+            <th>Date</th>
+            <th>High Temperature (F)</th>
+            <th>Low Temperature (F)</th>
+            <th>Precipitation</th>
+            <th>Wind Speed</th>
+            <th>Humidity</th>
+        </tr>
+
+        <tr>
+            <td>{{y_date}}</td>
+            <td>{{y_hi_temp}}</td>
+            <td>{{y_lo_temp}}</td>
+            <td>{{y_precipitation}}</td>
+            <td>{{y_wind_speed}}</td>
+            <td>{{y_humidity}}</td>
+        </tr>
+        
+    </table>
+</body>
