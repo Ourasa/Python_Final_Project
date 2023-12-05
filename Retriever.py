@@ -13,12 +13,14 @@ def set_API_KEY():
         file = open(path)
         API_KEY = file.read().strip()
 
-        if API_KEY == "":
-            print("WARNING: NO API KEY DETECTED. PLEASE ABORT THE PROGRAM AND FOLLOW THE API KEY INSTRUCTIONS")
-        
         file.close()
     except: 
         print('Something went wrong opening/reading the secret.txt to get API key')
+
+    if API_KEY == "":
+        print("WARNING: NO API KEY DETECTED. PLEASE ABORT THE PROGRAM AND FOLLOW THE API KEY INSTRUCTIONS")
+        sys.exit()
+        
 
 
 # Gets information regarding the current weather and alerts - Author 1
