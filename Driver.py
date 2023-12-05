@@ -66,7 +66,7 @@ def home_to_today_page():
     plt.grid(linewidth=0.5, alpha=0.8)
     plt.xticks([0,1,2,3,4,5,6], date)
     plt.gcf().autofmt_xdate()
-    plt.ylabel('Temperature (C)')
+    plt.ylabel('Temperature (F)')
     plt.xlabel('Date')
     plt.title('7 Day Forecast')
     plt.legend()
