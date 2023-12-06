@@ -19,10 +19,10 @@ def home_page():
 
 @app.route("/landing")
 def landing_page():
-    # Retriever.get_current_weather()
-    # Retriever.get_48hours_temperatures()
-    # Retriever.get_week_forecast()
-    # Retriever.get_yesterday_weather()
+    Retriever.get_current_weather()
+    Retriever.get_48hours_temperatures()
+    Retriever.get_week_forecast()
+    Retriever.get_yesterday_weather()
     return render_template('landing.html')
 
 
