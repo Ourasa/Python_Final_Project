@@ -19,10 +19,10 @@ def home_page():
 
 @app.route("/landing")
 def landing_page():
-    Retriever.get_current_weather()
-    Retriever.get_48hours_temperatures()
-    Retriever.get_week_forecast()
-    Retriever.get_yesterday_weather()
+    # Retriever.get_current_weather()
+    # Retriever.get_48hours_temperatures()
+    # Retriever.get_week_forecast()
+    # Retriever.get_yesterday_weather()
     return render_template('landing.html')
 
 
@@ -71,15 +71,49 @@ def plot_48_hour():
     for entry in timeseries:
         h.append(entry[0])
         t.append(entry[1])
+    temps = np.array(t)
+    hours = np.array(h)
+
+    indices = np.logical_and(timeseries[:,0] <= 0, timeseries[:,1] )
+    subset_timeseries_1 = timeseries[indices, :]
+    subset_coefficients_1 = np.polyfit(subset_timeseries_1[:,0], subset_timeseries_1[:,1], 1)
+    subset_f_1 = np.poly1d(subset_coefficients_1)
+    subset_trend_line_1 = subset_f_1(subset_timeseries_1[:,0])
+
+    indices = np.logical_and(timeseries[:,0] >= 0, timeseries[:,1] )
+    subset_timeseries_2 = timeseries[indices, :]
+    subset_coefficients_2 = np.polyfit(subset_timeseries_2[:,0], subset_timeseries_2[:,1], 1)
+    subset_f_2 = np.poly1d(subset_coefficients_2)
+    subset_trend_line_2 = subset_f_2(subset_timeseries_2[:,0])
+    min_temp_y = temps.min()
+    max_temp_y = temps.max()
+    max_temp_x = 0
+    min_temp_x = 0
+    for i in range (len(temps)):
+        if (temps[i] == max_temp_y):
+            max_temp_x = i
+        if (temps[i] == min_temp_y):
+            min_temp_x = i
+    max_temp_x = hours[max_temp_x]
+    min_temp_x = hours[min_temp_x]
+
     fig = plt.figure()
-    plt.plot(h, t, linewidth=2)
+    plt.plot(h, t, 'k', linewidth=2)
+    plt.plot(max_temp_x, max_temp_y, marker='o', markersize = 10, markeredgecolor = "black", markerfacecolor = "red")
+    plt.plot(min_temp_x, min_temp_y, marker='o', markersize = 10, markeredgecolor = "black", markerfacecolor = "blue")
+    plt.text(max_temp_x + 2, max_temp_y, 'Highest Temperature')
+    plt.text(min_temp_x + 2, min_temp_y, 'Lowest Temperature')
+    plt.plot(subset_timeseries_1[:,0], subset_trend_line_1, linestyle='--', linewidth=1.0, label='First 24 hours', color='Orange')
+    plt.plot(subset_timeseries_2[:,0], subset_trend_line_2, linestyle='--', linewidth=1.0, label='Second 24 hours', color='Purple')
+    
     plt.grid(linewidth=0.5, alpha=0.8)
     plt.xlim(-24, 24)
     plt.xticks([-24, -18, -12, -6, 0, 6, 12, 18, 24])
     plt.ylabel('Temperature (F)')
     plt.xlabel('Hour')
     plt.title('48 Hour Forecast')
-    fig.savefig("static/48hourplot.png")
+    plt.legend(bbox_to_anchor=(1.02, 0.1), loc='upper left', borderaxespad=0)
+    fig.savefig("static/48hourplot.png", bbox_inches='tight')
     plt.close(fig)
     return render_template('48hourplot.html')
 
@@ -177,6 +211,28 @@ def plot_7_day():
     for entry in timeseries:
         hi_t.append(entry[0])
         lo_t.append(entry[1])
+    hi_temps = np.array(hi_t)
+    lo_temps = np.array(lo_t)
+    hi_temps_min = hi_temps.min()
+    hi_temps_max = hi_temps.max()
+    lo_temps_min = lo_temps.min()
+    lo_temps_max = lo_temps.max()
+    hi_max = 0
+    hi_min = 0
+    lo_max = 0
+    lo_min = 0
+    for i in range (len(hi_temps)):
+        if (hi_temps[i] == hi_temps_max):
+            hi_max = i
+        if (hi_temps[i] == hi_temps_min):
+            hi_min = i
+        if (lo_temps[i] == lo_temps_max):
+            lo_max = i
+        if (lo_temps[i] == lo_temps_min):
+            lo_min = i
+
+    sum_arr = np.add(hi_temps,lo_temps)
+    avg_temps = sum_arr/2
     fig = plt.figure()
     date = []
     f = open(file_name, 'r')
@@ -188,14 +244,20 @@ def plot_7_day():
     fig = plt.figure()
     plt.plot([0,1,2,3,4,5,6], hi_t, 'r', linewidth=2, label = 'High Temperatures')
     plt.plot([0,1,2,3,4,5,6], lo_t, 'b', linewidth=2, label = 'Low Temperatures')
+    plt.plot(hi_max, hi_temps_max, marker='o', markersize = 10, markeredgecolor = "black", markerfacecolor = "red")
+    plt.plot(hi_min, hi_temps_min, marker='o', markersize = 10, markeredgecolor = "black", markerfacecolor = "blue")
+    plt.plot(lo_max, lo_temps_max, marker='o', markersize = 10, markeredgecolor = "black", markerfacecolor = "red")
+    plt.plot(lo_min, lo_temps_min, marker='o', markersize = 10, markeredgecolor = "black", markerfacecolor = "blue")
+    
+    plt.plot([0,1,2,3,4,5,6], avg_temps, 'g', linestyle = '--', label = 'Average Temperatures')
     plt.grid(linewidth=0.5, alpha=0.8)
     plt.xticks([0,1,2,3,4,5,6], date)
     plt.gcf().autofmt_xdate()
     plt.ylabel('Temperature (F)')
     plt.xlabel('Date')
     plt.title('7 Day Forecast')
-    plt.legend()
-    fig.savefig("static/7dayplot.png")
+    plt.legend(bbox_to_anchor=(1.02, 0.1), loc='upper left', borderaxespad=0)
+    fig.savefig("static/7dayplot.png", bbox_inches='tight')
     plt.close(fig)
     return render_template("7dayplot.html")
 
