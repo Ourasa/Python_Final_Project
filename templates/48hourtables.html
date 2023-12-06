@@ -7,6 +7,8 @@
 </head>
 <body>
     <h1>48 Hour Forecast</h1>
+
+    <table>
     <form action = "/48hourplot" method = "get">
         <!--Make a submit button with the text Register-->
         <input type="submit" value="View Graph">
@@ -17,18 +19,20 @@
     <form action = "/landing" method = "get">
         <input type="submit" value="Refresh Data">
     </form>
+    </table>
+    <br>
 
-    <h1 id="CurrentLabel">CURRENT FORECAST</h1>
+    <h1 id="CurrentLabel">Current Weather</h1>
     <table id = "CurrentTable">
         <tr>
             <th>Date</th>
             <th>Time</th>
             <th>Current Temperature (F)</th>
             <th>Apparent Temperature (F)</th>
-            <th>Precipitation</th>
-            <th>Wind Speed</th>
-            <th>Humidity</th>
-            <th>Forecast Condition</th>
+            <th>Precipitation Chance</th>
+            <th>Wind Speed (mph)</th>
+            <th>Humidity (g/ft^3)</th>
+            <th>Weather Condition</th>
         </tr>
 
         <tr>
@@ -44,15 +48,17 @@
         
     </table>
 
-    <h1 id="YesterdayLabel">YESTERDAY'S FORECAST</h1>
+    <br><br>
+    
+    <h1 id="YesterdayLabel">Yesterday's Weather</h1>
     <table id="YesterdayTable">
         <tr>
             <th>Date</th>
             <th>High Temperature (F)</th>
             <th>Low Temperature (F)</th>
-            <th>Precipitation</th>
-            <th>Wind Speed</th>
-            <th>Humidity</th>
+            <th>Precipitation Chance</th>
+            <th>Wind Speed (mph)</th>
+            <th>Humidity (g/ft^3)</th>
         </tr>
 
         <tr>

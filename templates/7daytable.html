@@ -7,6 +7,7 @@
 </head>
 <body>
     <h1>7 Day Forecast</h1>
+    <table>
     <form action = "/7dayplot" method = "get">
         <input type="submit" value="View Graph">
     </form>
@@ -17,16 +18,18 @@
     <form action = "/landing" method = "get">
         <input type="submit" value="Refresh Data">
     </form>
+    </table>
+    <br>
 
     <table id="7daytable">
         <tr>
             <th>Date</th>
             <th>High Temperature (F)</th>
             <th>Low Temperature (F)</th>
-            <th>Precipitation</th>
-            <th>Wind Speed</th>
-            <th>Humidity</th>
-            <th>Forecast Condition</th>
+            <th>Precipitation Chance</th>
+            <th>Wind Speed (mph)</th>
+            <th>Humidity (g/ft^3)</th>
+            <th>Weather Condition</th>
         </tr>
 
         <tr>
