@@ -6,20 +6,20 @@ Author 1: Steven Pham
 Author 2: Tommy Agarwal
 
 ## Project Description (5 sentences): 
-This is a Python-centric project that will provide the user with an interactable interface that informs them of the weather. Upon opening, the user will be informed of the current weather (of the local area in San Jose?). From here, the user may choose to view the forecast of weather of up to 7 days, or view the weather from yesterday. The forecast option shows a plot of the predicted temperatures for the upcoming week. The yesterday option would be similar to the current weather option, except it would highlight the highest and lowest temperatures of that day.
+This is a Python-centric project that will provide the user with an interactable interface that informs them of the weather of San Jose. Upon opening, the user will be informed of the current weather (of the local area in San Jose?). From here, the user may choose to view the forecast of weather of up to 7 days, or view the weather from yesterday. The forecast option shows a plot of the predicted temperatures for the upcoming week. The yesterday option would be similar to the current weather option, except it would highlight the highest and lowest temperatures of that day.
 
 - - - - -
 
 # Project Outline/Plan 
 
 ## Interface Plan: 
-The interface will be a web interface that is created using Flask. It is planned that the user will interact with this interface through the use of widgets such as buttons. We are thinking of having a home page first, which can then branch off to the forecast plot page, the yesterday page, etc. Ideally, these branches would also be able to directly go to the other's page as well without stopping by the home page.
+The interface will be a web interface that is created using Flask. It is planned that the user will interact with this interface through the use of widgets such as buttons. We are thinking of having a home page first, which can then branch off to the forecast plot page, the yesterday page, etc. Ideally, these branches would also be able to directly go to the other's page as well without necessarily stopping by a central home page.
 
 ## Data Collection and Storage Plan: 
 Data can be obtained by using an API from Pirate Weather. The information obtained from this API would need to be filtered for our program's purposes. The data obtained would then be stored into the local machine in a predetermined format, allowing it to be used for data analysis and visualization. The data we will be going for is the current weather, the forecast, weather from yesterday, and temperatures within a 48 hour period (with the present time being the center).
 
 ## Data Analysis and Visualization Plan: 
-This part is reliant on the organized data obtained using an API. The data obtained will be processed internally in the local machine to create an output that can be viewed on the interface. For the current weather and yesterday's weather, minimal processing would be needed. Meanwhile, the weather forecast will likely be placed in a plot, but outliers could also be calculated (using standard deviation presumably). Days that are identified as outliers are planned to be colored differently to be easier to identify. Similar actions can be done for the 48 hour temperature data. 
+This part is reliant on the organized data obtained using an API. The data obtained will be processed internally in the local machine to create an output that can be viewed on the interface. For the current weather and yesterday's weather, minimal processing would be needed. Meanwhile, the weather forecast will likely be placed in a plot, but trends are to be calculated. There can be one trend for both forecasted high temperatures and low temperatues. For the 48 hour temperature data, we may highlight the highest and lowest temperatures. 
 
 - - - - -
 
@@ -38,3 +38,20 @@ In order to use this program, you will need your own Pirate Weather API Key.
   2.) Open up the 'data' folder, and access 'secret.txt' for editing.  
   3.) Paste your API key into the file. Do not add any other text.  
   4.) Save the file.  
+
+- - - - -
+
+## How to use this program 
+
+To use this program, you will need to do the following:  
+  1.) Download this project's files.  
+  2.) Obtain and insert the API Key into secret.txt. See above API key instructions for more details.  
+  3.) Run the Driver.py file. This can be done using an IDE like VSCode, or with a terminal command.  
+  4.) Open a web browser, and paste **http://127.0.0.1:5000** onto the URL.  
+  
+- - - - -
+
+## Potential Updates 
+  1.) Smoothing out of the program's execution time. This can be done by specifying further reductions in size for API calls. We can also reduce the preception of the wait time by having the update function only update data relevant to the current page.  
+  2.) Improve UI/appearance of program. This can be completed by adding more images, reformatting some of the elements, etc.  
+  3.) Allow application to work for all parts of the country. This will require us to implement a search function, which would translate typed in locations for coordinates, which can then be used to gather data for that particular location. 
